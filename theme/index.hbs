@@ -301,6 +301,14 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
+                        {{#if (eq language "id")}}
+                        <aside aria-label="Status terjemahan">
+                            <p><strong>Terjemahan komunitas belum lengkap.</strong>
+                            Bagian yang belum diterjemahkan masih ditampilkan dalam bahasa Inggris.
+                            Terjemahan diperiksa AI dan belum ditinjau manusia.
+                            <a href="https://github.com/google/comprehensive-rust/blob/baf25efd192d7c68ef0552aa6803c8aba0f77c4f/src/{{path}}">Lihat sumber Inggris halaman ini</a>.</p>
+                        </aside>
+                        {{/if}}
                         {{{ content }}}
                     </main>
 

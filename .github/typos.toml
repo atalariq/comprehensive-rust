@@ -15,3 +15,13 @@ check-file = false
 [files]
 # Typos in third party packages should be fixed upstream.
 extend-exclude = ["third_party/*", "theme/book.js"]
+
+# Indonesian prose belongs to the translation; keep English source checks active.
+[type.indonesian-prose]
+extend-glob = [
+  "TRANSLATION_GUIDE.md",
+  "TRANSLATION_GLOSSARY.md",
+  "TRANSLATION_STATUS.md",
+  "translation-editorial/*.md",
+]
+check-file = false
