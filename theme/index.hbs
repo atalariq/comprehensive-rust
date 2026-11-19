@@ -174,34 +174,9 @@
                             {{fa "solid" "globe"}}
                         </button>
                         <ul id="language-list" class="theme-popup" aria-label="Languages" role="menu">
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="en">English</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="pt-BR">Brazilian Portuguese (Português do Brasil)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="zh-CN">Chinese Simplified (汉语)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="zh-TW">Chinese Traditional (漢語)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="ja">Japanese (日本語)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="ko">Korean (한국어)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="fa">Farsi (فارسی)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="es">Spanish (Español)</a>
-                          </button></li>
-                          <li role="none"><button role="menuitem" class="theme">
-                              <a id="uk">Ukrainian (українська)</a>
-                          </button></li>
-                        </ul>
+<li role="none"><a id="en" role="menuitem" href="{{ path_to_root }}../en/">English</a></li>
+<li role="none"><a id="id" role="menuitem" href="{{ path_to_root }}../id/">Bahasa Indonesia</a></li>
+</ul>
                         <script>
                           let langToggle = document.getElementById("language-toggle");
                           let langList = document.getElementById("language-list");
@@ -215,17 +190,13 @@
 
                           // The path to the root, taking the current
                           // language into account.
-                          {{#if (eq language "en")}}
-                          let full_path_to_root = "{{ path_to_root }}";
-                          {{else}}
                           let full_path_to_root = "{{ path_to_root }}../";
-                          {{/if}}
                           // The page path (mdbook only gives us
                           // access to the path to the Markdown file).
                           let path = "{{ path }}".replace(/\.md$/, ".html");
                           for (let lang of langList.querySelectorAll("a")) {
                               if (lang.id == "en") {
-                                  lang.href = `${full_path_to_root}${path}`;
+                                  lang.href = `${full_path_to_root}en/${path}`;
                               } else {
                                   lang.href = `${full_path_to_root}${lang.id}/${path}`;
                               }
@@ -261,7 +232,7 @@
                             {{fa "solid" "pencil" "git-edit-button"}}
                         </a>
                         {{else}}
-                        <a href="https://github.com/google/comprehensive-rust/edit/main/po/{{language}}.po"
+                        <a href="https://github.com/atalariq/comprehensive-rust/edit/indonesian/po/{{language}}.po"
                            title="Suggest an edit to the translation" aria-label="Suggest an edit to the translation"
                            rel="edit" target="_blank">
                             {{fa "solid" "pencil" "git-edit-button"}}
@@ -303,9 +274,10 @@
                     <main>
                         {{#if (eq language "id")}}
                         <aside aria-label="Status terjemahan">
-                            <p><strong>Terjemahan komunitas belum lengkap.</strong>
-                            Bagian yang belum diterjemahkan masih ditampilkan dalam bahasa Inggris.
-                            Terjemahan diperiksa AI dan belum ditinjau manusia.
+                            <p><strong>Terjemahan komunitas bahasa Indonesia.</strong>
+                            Dibuat dengan bantuan AI dan diperiksa oleh agent AI lain; belum ditinjau manusia.
+                            Materi WIP sumber tetap berstatus WIP. Tautan PDF mengarah ke versi Inggris.
+                            <a href="{{ path_to_root }}supplements/">Berkas pendukung dan WIP</a>.
                             <a href="https://github.com/google/comprehensive-rust/blob/baf25efd192d7c68ef0552aa6803c8aba0f77c4f/src/{{path}}">Lihat sumber Inggris halaman ini</a>.</p>
                         </aside>
                         {{/if}}

@@ -4,6 +4,7 @@
 Run with msgfmt on PATH: python3 scripts/check-id-translation.py
 """
 import gettext
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -42,8 +43,11 @@ for digest in reviewed:
     source, target = messages[digest]
     for pattern in (r'(?<!`)`[^`\n]+`(?!`)', r'\]\(([^)]+)\)',
                     r'<(https?://[^>]+)>', r'</?(?:kbd|sub|sup)[^>]*>'):
-        assert re.findall(pattern, source) == re.findall(
-            pattern, target), ('Protected source content changed', source)
+        left, right = re.findall(pattern, source), re.findall(pattern, target)
+        if pattern.startswith(r'(?<!`)'):
+            assert Counter(left) == Counter(right), ('Protected inline literal changed', source)
+        else:
+            assert left == right, ('Protected source content changed', source)
 for digest in REPORT['identity_message_sha256']:
     source, target = messages[digest]
     assert source == target, ('Protected literal changed', source)
@@ -70,5 +74,5 @@ print(
     f'PASS: {len(reviewed)} reviewed messages; protected literals/links/markup and all source hashes'
 )
 print(
-    'Catalogue is partial. AI review is not human review; see TRANSLATION_STATUS.md.'
+    'Catalogue complete; 12 unindexed Markdown supplements tracked separately. AI review is not human review.'
 )

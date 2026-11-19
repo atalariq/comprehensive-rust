@@ -23,6 +23,11 @@ for language in en id; do
     zip -q -r "$destination/site/$language/comprehensive-rust-exercises.zip" comprehensive-rust-exercises)
 done
 
+# Unindexed source material is published as honest Markdown supplements, not
+# silently added to upstream's main book navigation.
+mkdir -p "$destination/site/id/supplements"
+cp -R translation-supplements/id/. "$destination/site/id/supplements/"
+
 # PDF generation is deliberately outside this HTML release. Keep the original
 # download usable and identify its language instead of publishing a broken link.
 python3 - "$destination/site" <<'PY'

@@ -72,8 +72,8 @@ additional-css = [
   "theme/css/slide-number.css",
 ]
 site-url = "/comprehensive-rust/"
-git-repository-url = "https://github.com/google/comprehensive-rust"
-edit-url-template = "https://github.com/google/comprehensive-rust/edit/main/{path}"
+git-repository-url = "https://github.com/atalariq/comprehensive-rust"
+edit-url-template = "https://github.com/atalariq/comprehensive-rust/edit/indonesian/{path}"
 
 [output.html.fold]
 enable = true
